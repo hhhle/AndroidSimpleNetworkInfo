@@ -1,0 +1,77 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="sendRequest"
+            android:text="@string/button_send" />
+
+        <TextView
+            android:id="@+id/connection_status_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/connection_status_label" />
+
+        <TextView
+            android:id="@+id/connection_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/IPaddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/IP_out" />
+
+        <TextView
+            android:id="@+id/networkInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/networkInfo_out" />
+
+        <TextView
+            android:id="@+id/ping_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ping_label" />
+
+        <EditText
+            android:id="@+id/ping_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/ping_url"
+            android:inputType="textUri" />
+
+        <Button
+            android:id="@+id/ping_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="pingWrapper"
+            android:text="@string/ping_button" />
+
+        <TextView
+            android:id="@+id/ping_status_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ping_status_label" />
+
+        <TextView
+            android:id="@+id/ping_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ping_status" />
+    </LinearLayout>
+
+</ScrollView>
