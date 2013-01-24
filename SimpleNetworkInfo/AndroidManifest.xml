@@ -26,11 +26,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ConnectionRequest"
-            android:label="@string/title_activity_connection_request" >
+            android:name=".Ports"
+            android:label="Ports" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.simplenetworkinfo.MainActivity" />
+                android:value="com.example.simpledatabase.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Ping"
+            android:label="Ping" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.simpledatabase.MainActivity" />
         </activity>
     </application>
 
