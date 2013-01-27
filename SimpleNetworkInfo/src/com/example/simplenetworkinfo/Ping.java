@@ -52,45 +52,11 @@ public class Ping extends BaseClass{
 	 * @param view
 	 * @throws Exception
 	 */
-	public void pingWrapper(View view) throws Exception{
-		
-		//ui
-	    EditText urlInEdit = (EditText) findViewById(R.id.ping_url);
-	    Editable urlInText = urlInEdit.getText();
-	    
-	    //network classes
-	    //InetAddress ipAddress = null;
-	    
-	    /*
-	     * for some strange strange reason using an array of addresses fixes my problem.
-	     */
-	    InetAddress [] ipAddress2 = null;
-	    
-    	//Grabs the ipaddress based on a name
-        try {
-        	//HERES THE ERROR!!!!
-    		//I think the error is based on a bad DNS lookup.  
-			//ipAddress = InetAddress.getByName(urlInText.toString());
-        	
-        	/*
-        	 * For some reason calling getAll doesn't crash the app but still doesn't work
-        	 */
-        	ipAddress2 = InetAddress.getAllByName(urlInText.toString());
-
-		} catch (UnknownHostException e) {
-			/*
-			 *Added this, because I'm not getting past this trycatch in the emulator
-			 *Having DNS issues, hopefully in future patches googles will have DNS 
-			 *fixed on the emulator
-			*/
-			TextView status = (TextView) findViewById(R.id.ping_status);
-			status.setText("No response: Time out");
-			e.printStackTrace();
-		}
-        
+	public void pingWrapper(View view) throws Exception{    
         //calls the background thread
 		ping pinger = new ping();
-		pinger.execute(ipAddress2[0]);     
+		//I have to supply a parameter. I used to have address but it needed to be in the Async
+		pinger.execute(5);     
 	}
 
 /*
@@ -99,16 +65,41 @@ public class Ping extends BaseClass{
  * The integer is the progress bar me thinks
  * The bool is passed from the doInBackground to the postExecute
  */
-class ping extends AsyncTask<InetAddress, Integer, Boolean> {
+class ping extends AsyncTask<Integer,Integer, Boolean> {
 	
 	//global
 	TextView status = (TextView) findViewById(R.id.ping_status);
 
-	protected Boolean doInBackground(InetAddress... params) {
-		InetAddress ipAddress = params[0];
+	protected Boolean doInBackground(Integer... params) {
+		
+		//ui
+	    EditText urlInEdit = (EditText) findViewById(R.id.ping_url);
+	    Editable urlInText = urlInEdit.getText();
+	    
+	    /*
+	     * for some strange strange reason using an array of addresses fixes my problem.
+	     */
+	    InetAddress [] ipAddress = null;
+	    
+    	//Grabs the ipaddress based on a name
+        try {
+      	
+        	/*
+        	 * For some reason calling getAll doesn't crash the app but still doesn't work
+        	 * There is an issue in the emulator with DNS lookup
+        	 * To bypass this issue for some reason you can use an array of addresses and it 
+        	 * doesn't crash the app.  Hopefully ina future update,
+        	 * google will fix the DNS in the emulator
+        	 */
+        	ipAddress = InetAddress.getAllByName(urlInText.toString());
+
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+
     	//pings the ipaddress 
         try {
-			if (ipAddress.isReachable(5000)) {
+			if (ipAddress[0].isReachable(5000)) {
 				return true;
 			} else {
 				return false;
