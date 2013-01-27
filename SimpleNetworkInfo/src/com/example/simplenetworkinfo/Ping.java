@@ -6,7 +6,6 @@ import java.net.UnknownHostException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,24 +59,38 @@ public class Ping extends BaseClass{
 	    Editable urlInText = urlInEdit.getText();
 	    
 	    //network classes
-	    InetAddress ipAddress = null;
-
-		Log.d("Grabbed IP",urlInText.toString());
+	    //InetAddress ipAddress = null;
+	    
+	    /*
+	     * for some strange strange reason using an array of addresses fixes my problem.
+	     */
+	    InetAddress [] ipAddress2 = null;
 	    
     	//Grabs the ipaddress based on a name
         try {
-    		Log.d("trying to get to ip",urlInText.toString());
         	//HERES THE ERROR!!!!
     		//I think the error is based on a bad DNS lookup.  
-			ipAddress = InetAddress.getByName(urlInText.toString());
-			//ERROR ^^^^
-			Log.d("Check IP",ipAddress.getHostAddress());
+			//ipAddress = InetAddress.getByName(urlInText.toString());
+        	
+        	/*
+        	 * For some reason calling getAll doesn't crash the app but still doesn't work
+        	 */
+        	ipAddress2 = InetAddress.getAllByName(urlInText.toString());
+
 		} catch (UnknownHostException e) {
+			/*
+			 *Added this, because I'm not getting past this trycatch in the emulator
+			 *Having DNS issues, hopefully in future patches googles will have DNS 
+			 *fixed on the emulator
+			*/
+			TextView status = (TextView) findViewById(R.id.ping_status);
+			status.setText("No response: Time out");
 			e.printStackTrace();
 		}
+        
         //calls the background thread
 		ping pinger = new ping();
-		pinger.execute(ipAddress);     
+		pinger.execute(ipAddress2[0]);     
 	}
 
 /*
