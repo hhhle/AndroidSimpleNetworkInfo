@@ -1,17 +1,20 @@
 <resources>
 
     <string name="app_name">SimpleNetworkInfo</string>
-    <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Network Tools</string>
     <string name="button_send">Check Connection</string>
     <string name="title_activity_connection_request">Connection Status</string>
     <string name="connection_status_label">Status:</string>
-    <string name="IP_out">IP</string>
+    <string name="IP_out"></string>
     <string name="networkInfo_out"></string>
     <string name="ping_label">"Ping: "</string>
     <string name="ping_url">URL</string>
     <string name="ping_status_label">Status: </string>
     <string name="ping_status"></string>
     <string name="ping_button">Ping!</string>
+    <string name="menu_info">Info</string>
+    <string name="menu_ping">Ping</string>
+    <string name="menu_ports">Ports</string>
+    <string name="menu_settings">Settings</string>
 
 </resources>

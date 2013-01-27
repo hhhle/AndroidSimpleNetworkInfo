@@ -1,3 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <item
+        android:id="@+id/button_1"
+        android:showAsAction="always"
+        android:title="@string/menu_info"/>
+    <item
+        android:id="@+id/button_2"
+        android:showAsAction="always"
+        android:title="@string/menu_ping"/>
+    <item
+        android:id="@+id/button_3"
+        android:showAsAction="always"
+        android:title="@string/menu_ports"/>
+    <item
+        android:id="@+id/settings"
+        android:showAsAction="never"
+        android:title="@string/menu_settings"/>
+
 </menu>

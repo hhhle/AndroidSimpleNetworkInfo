@@ -39,6 +39,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.simpledatabase.MainActivity" />
         </activity>
+        <activity
+            android:name=".Settings"
+            android:label="Settings" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.simpledatabase.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
