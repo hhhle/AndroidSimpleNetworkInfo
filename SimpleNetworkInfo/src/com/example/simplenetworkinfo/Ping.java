@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -88,10 +89,11 @@ class ping extends AsyncTask<Integer,Integer, Boolean> {
         	 * For some reason calling getAll doesn't crash the app but still doesn't work
         	 * There is an issue in the emulator with DNS lookup
         	 * To bypass this issue for some reason you can use an array of addresses and it 
-        	 * doesn't crash the app.  Hopefully ina future update,
+        	 * doesn't crash the app.  Hopefully in a future update,
         	 * google will fix the DNS in the emulator
         	 */
         	ipAddress = InetAddress.getAllByName(urlInText.toString());
+        	Log.d("Address",ipAddress[0].getHostAddress());
 
 		} catch (UnknownHostException e) {
 			e.printStackTrace();

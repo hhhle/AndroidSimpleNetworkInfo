@@ -1,11 +1,11 @@
 package com.example.simplenetworkinfo;
 
-import android.app.Activity;
+import android.app.TabActivity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class BaseClass extends Activity {
+public class BaseTab extends TabActivity {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
