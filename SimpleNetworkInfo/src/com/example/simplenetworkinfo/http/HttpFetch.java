@@ -12,30 +12,34 @@ import org.apache.http.impl.client.DefaultHttpClient;
  */
 public class HttpFetch {
 
-	public static final boolean DO_LOG = true;
-
-	public static final String LOG_TAG = "HttpFetch";
-
+	int statuscode;
+	long duration;
+	
 	/**
 	 * Called whenever the fetch is made.
 	 * 
 	 * @param response
 	 * @param statuscode
 	 */
-	protected void onFetch(HttpResponse response, int statuscode) {
+	protected void onFetch(long duration, int statuscode) {
 
 	}
 
 	public void fetch(String url) {
 		DefaultHttpClient client = new DefaultHttpClient();
-		HttpGet request = new HttpGet(url);
+		HttpGet request = null;
+		try {
+			request = new HttpGet(url);
+		} catch (IllegalArgumentException  e) {
+		}
 		try {
 			long start = System.currentTimeMillis();
 			HttpResponse response = client.execute(request);
-			int statuscode = response.getStatusLine().getStatusCode();
-			long duration = System.currentTimeMillis() - start;
+			//http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+			statuscode = response.getStatusLine().getStatusCode();
+			duration = System.currentTimeMillis() - start;
+			onFetch(duration,statuscode);
 		} catch (IOException ex) {
-			
 		}
 	}
 

@@ -7,7 +7,8 @@ import com.example.simplenetworkinfo.tab.*;
 
 public class NetWorkInfo extends BaseTab {
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 

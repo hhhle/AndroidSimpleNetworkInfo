@@ -1,8 +1,10 @@
 package com.example.simplenetworkinfo;
 
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import com.example.simplenetworkinfo.http.HttpFetch;
+
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -18,6 +20,8 @@ import android.widget.TextView;
 public class Ping extends BaseClass{
 	
 	Button pingerButton;
+	int pstatuscode;
+	long pduration;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -66,25 +70,26 @@ public class Ping extends BaseClass{
  * The integer is the progress bar me thinks
  * The bool is passed from the doInBackground to the postExecute
  */
-class ping extends AsyncTask<Integer,Integer, Boolean> {
+class ping extends AsyncTask<Integer,Integer,Boolean> {
 	
 	//global
 	TextView status = (TextView) findViewById(R.id.ping_status);
 
 	protected Boolean doInBackground(Integer... params) {
 		
+		
+		
 		//ui
 	    EditText urlInEdit = (EditText) findViewById(R.id.ping_url);
 	    Editable urlInText = urlInEdit.getText();
-	    
+
 	    /*
 	     * for some strange strange reason using an array of addresses fixes my problem.
 	     */
 	    InetAddress [] ipAddress = null;
-	    
+
     	//Grabs the ipaddress based on a name
         try {
-      	
         	/*
         	 * For some reason calling getAll doesn't crash the app but still doesn't work
         	 * There is an issue in the emulator with DNS lookup
@@ -94,22 +99,28 @@ class ping extends AsyncTask<Integer,Integer, Boolean> {
         	 */
         	ipAddress = InetAddress.getAllByName(urlInText.toString());
         	Log.d("Address",ipAddress[0].getHostAddress());
-
+        	Log.d("Address",ipAddress[0].getHostName());
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
+	    
+	    
+        HttpFetch fetcher = new HttpFetch() {
+            @Override
+            protected void onFetch(long duration, int statuscode) {
+            	pstatuscode = statuscode;
+            	pduration = duration;
+            }
+        };
+                
+        fetcher.fetch("http://www." + ipAddress[0].getHostName());
+        
+    	if(pstatuscode >= 200){
+    		return true;
+    	}else{
+    		return false;
+   	}
 
-    	//pings the ipaddress 
-        try {
-			if (ipAddress[0].isReachable(5000)) {
-				return true;
-			} else {
-				return false;
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        return false;
 	}
 	
 	//Wrapper for the progress percent. Updates the progress.
@@ -128,9 +139,9 @@ class ping extends AsyncTask<Integer,Integer, Boolean> {
 
 	//Outputs the results of the background thread to the UI
 	protected void onPostExecute(Boolean result) {
-		
+
 		if(result.booleanValue()){
-		status.setText("Response OK");
+		status.setText("Response OK \nDuration: " + pduration + "\nStatuscode: " + pstatuscode);
 		}else{
 		status.setText("No response: Time out");
 		}

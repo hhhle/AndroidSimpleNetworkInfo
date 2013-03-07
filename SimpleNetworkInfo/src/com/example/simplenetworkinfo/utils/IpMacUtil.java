@@ -1,10 +1,12 @@
 package com.example.simplenetworkinfo.utils;
 
+import android.annotation.SuppressLint;
 import java.io.*;
 import java.net.*;
 import java.util.*;   
 import org.apache.http.conn.util.InetAddressUtils;
 
+@SuppressLint("DefaultLocale")
 public class IpMacUtil {
 	
 	/**
@@ -89,7 +91,8 @@ public class IpMacUtil {
      * @param ipv4  true=return ipv4, false=return ipv6
      * @return  address or empty string
      */
-    public static String getIPAddress(boolean useIPv4) {
+    @SuppressLint("DefaultLocale")
+	public static String getIPAddress(boolean useIPv4) {
         try {
             List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
             for (NetworkInterface intf : interfaces) {
