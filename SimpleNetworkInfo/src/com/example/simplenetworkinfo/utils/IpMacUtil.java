@@ -1,6 +1,8 @@
 package com.example.simplenetworkinfo.utils;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
+
 import java.io.*;
 import java.net.*;
 import java.util.*;   
@@ -99,7 +101,8 @@ public class IpMacUtil {
                 List<InetAddress> addrs = Collections.list(intf.getInetAddresses());
                 for (InetAddress addr : addrs) {
                     if (!addr.isLoopbackAddress()) {
-                        String sAddr = addr.getHostAddress().toUpperCase();
+                    	Log.d("IP ", addr.getHostAddress().toUpperCase());
+                    	String sAddr = addr.getHostAddress().toUpperCase();
                         boolean isIPv4 = InetAddressUtils.isIPv4Address(sAddr); 
                         if (useIPv4) {
                             if (isIPv4) 

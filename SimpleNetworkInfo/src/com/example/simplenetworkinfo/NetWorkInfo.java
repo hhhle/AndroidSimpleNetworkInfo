@@ -16,22 +16,18 @@ public class NetWorkInfo extends BaseTab {
         
         tabHost.addTab(tabHost.newTabSpec("tab1")
                 .setIndicator("Current")
-                .setContent(new Intent(this, CurrentConn.class)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)));
+                .setContent(new Intent(this, CurrentConn.class)));
 
         tabHost.addTab(tabHost.newTabSpec("tab1")
                 .setIndicator("Mobile")
-                .setContent(new Intent(this, MobileConn.class)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)));
+                .setContent(new Intent(this, MobileConn.class)));
 
         tabHost.addTab(tabHost.newTabSpec("tab2")
                 .setIndicator("Wifi")
-                .setContent(new Intent(this, WifiConn.class)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)));
+                .setContent(new Intent(this, WifiConn.class)));
         
         tabHost.addTab(tabHost.newTabSpec("tab3")
                 .setIndicator("Bluetooth")
-                .setContent(new Intent(this, BluetoothConn.class)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)));
+                .setContent(new Intent(this, BluetoothConn.class)));
     }
 }
