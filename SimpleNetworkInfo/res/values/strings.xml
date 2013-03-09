@@ -10,12 +10,13 @@
     <string name="ping_label">"Ping: "</string>
     <string name="ping_url">URL</string>
     <string name="ping_status_label">Status: </string>
-    <string name="ping_status"></string>
+    <string name="ping_status">Response \n Duration \n Status Code \n</string>
     <string name="ping_button">Ping!</string>
     <string name="menu_info">Info</string>
     <string name="menu_ping">Ping</string>
     <string name="menu_ports">Ports</string>
     <string name="menu_settings">Settings</string>
     <string name="text_networkinfo">NULL</string>
+    <string name="status_code"></string>
 
 </resources>

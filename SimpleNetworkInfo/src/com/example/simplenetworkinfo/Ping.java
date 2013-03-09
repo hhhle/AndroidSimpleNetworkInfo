@@ -1,13 +1,15 @@
 package com.example.simplenetworkinfo;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import com.example.simplenetworkinfo.http.HttpFetch;
+import com.example.simplenetworkinfo.utils.IpMacUtil;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Looper;
 import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +24,12 @@ public class Ping extends BaseClass{
 	Button pingerButton;
 	int pstatuscode;
 	long pduration;
+	/**
+	 * I need a context for a few different things.  It needs to be passed
+	 * from here for now until I figure out how to properly do this.
+	 * I have a few methods that need the context in order to work and I'm
+	 * not sure the proper way to pass a context besides just declaring it and passing it down.
+	 */
 	Context context;
 	boolean badaddr = false;
 
@@ -37,6 +45,22 @@ public class Ping extends BaseClass{
 		 */
 		pingerButton = (Button) findViewById(R.id.ping_button);
 		pingerButton.setOnClickListener(pingClick);
+		
+		/**
+		 * Display my statuscode chart. Its plain text.
+		 * I need to pass an inputstream reader because the IS 
+		 * needs a context and I cant pass it a context any other way 
+		 * unless I declare the object here and overwrite the method. but
+		 * This seems to be easier to just pass the IS. 
+		 */
+		InputStream is = context.getResources().openRawResource(R.raw.statuscodes);
+		TextView tv = (TextView) findViewById(R.id.status_codes);
+		try {
+			tv.append("Status Codes: \n" + IpMacUtil.loadText(is));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -48,6 +72,16 @@ public class Ping extends BaseClass{
 			try {
 				pingWrapper(arg0);
 			} catch (Exception e) {
+				//Alert builder creates and alert
+				AlertDialog.Builder alertDialogBuilder = 
+						new AlertDialog.Builder(context).
+						setMessage("Your shit is whack yo").
+						setCancelable(false).
+						setNeutralButton("Ok", null);
+				//Set an alert to the builder.
+				AlertDialog ad =  alertDialogBuilder.create();
+				//Show the alert
+				ad.show();
 			}
 		}
 	};
@@ -129,7 +163,7 @@ public class Ping extends BaseClass{
 
 		//gets executed before the background thread. Initial UI work
 		protected void onPreExecute() {
-			status.setText("Please Wait...");
+			status.setText("Please Wait... \n \n \n");
 		}
 
 		//Outputs the results of the background thread to the UI
@@ -147,10 +181,12 @@ public class Ping extends BaseClass{
 				//Show the alert
 				ad.show();
 			}
+			badaddr = false;
 			if(result.booleanValue()){
-				status.setText("Response OK \nDuration: " + pduration + "\nStatuscode: " + pstatuscode);
+				//Set output with duration and response. 
+				status.setText("Response OK \nDuration: " + pduration + "\nStatuscode: " + pstatuscode + "\n");
 			}else{
-				status.setText("No response: Time out");
+				status.setText("No response: Time out \n \n \n");
 			}
 		}
 	}
