@@ -24,7 +24,8 @@ public class Ping extends BaseClass{
 	Button pingerButton;
 	int pstatuscode;
 	long pduration;
-	/**
+	
+	/*
 	 * I need a context for a few different things.  It needs to be passed
 	 * from here for now until I figure out how to properly do this.
 	 * I have a few methods that need the context in order to work and I'm
@@ -39,14 +40,15 @@ public class Ping extends BaseClass{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ping);
 		context = this;
-		/**
+		
+		/*
 		 * Grab a reference to the button
 		 * Set the onClickListener for that button
 		 */
 		pingerButton = (Button) findViewById(R.id.ping_button);
 		pingerButton.setOnClickListener(pingClick);
 		
-		/**
+		/*
 		 * Display my statuscode chart. Its plain text.
 		 * I need to pass an inputstream reader because the IS 
 		 * needs a context and I cant pass it a context any other way 
@@ -181,7 +183,9 @@ public class Ping extends BaseClass{
 				//Show the alert
 				ad.show();
 			}
+			
 			badaddr = false;
+			
 			if(result.booleanValue()){
 				//Set output with duration and response. 
 				status.setText("Response OK \nDuration: " + pduration + "\nStatuscode: " + pstatuscode + "\n");
