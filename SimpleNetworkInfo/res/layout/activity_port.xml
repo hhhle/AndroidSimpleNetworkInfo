@@ -5,24 +5,46 @@
     android:orientation="vertical" >
 
     <EditText
-        android:id="@+id/et_portAddress"
+        android:id="@+id/editText1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" >
+        android:ems="10"
+        android:hint="@string/et_portHint" />
 
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/btn_port"
+    <LinearLayout
+        android:id="@+id/port_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_height="wrap_content" >
 
-    <TextView
-        android:id="@+id/tv_portResults"
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_start" />
+
+        <Button
+            android:id="@+id/btn_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_stop" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pb_port"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:id="@+id/sv_port"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tv_portResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </ScrollView>
 
 </LinearLayout>

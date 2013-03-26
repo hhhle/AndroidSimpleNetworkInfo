@@ -33,18 +33,17 @@ import android.widget.TextView;
 @SuppressLint("HandlerLeak")
 public class Ports extends BaseClass{
 
-	String targetHost = "www.google.com";
+	String targetHost = "173.194.78.106";
 	String targetHostName;
 	boolean stop = false;
 	String results;
 	public int startPort = 75;
-	public int endPort = 80;
+	public int endPort = 85;
 	InetAddress targetAddress;
 	TextView scanText;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) 
-	{
+	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_port);
 
@@ -59,24 +58,13 @@ public class Ports extends BaseClass{
 				startScan();
 			}
 		}.start();
-		
-		
 	}
 
 	private void prepareScan(){
-
-		try{
-			targetAddress = InetAddress.getByName(targetHost);
-		}
-		catch(UnknownHostException e){
-			e.printStackTrace();
-		}
-		try{
-			targetHostName = targetAddress.getHostName();
-		}
-		catch(Exception e){
-			targetHostName = targetHost;    
-		}
+			try{targetAddress = InetAddress.getByName(targetHost);}
+			catch(UnknownHostException e){e.printStackTrace();}
+			try{targetHostName = targetAddress.getHostName();}
+			catch(Exception e){targetHostName = targetHost;}
 	}
 
 

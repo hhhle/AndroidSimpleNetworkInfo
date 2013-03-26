@@ -72,7 +72,8 @@ public class Ping extends BaseClass{
 	Button.OnClickListener pingClick = new Button.OnClickListener(){
 		public void onClick(View arg0){
 			try {
-				pingWrapper(arg0);
+				ping pinger = new ping();
+				pinger.execute(0);  
 			} catch (Exception e) {
 				//Alert builder creates and alert
 				AlertDialog.Builder alertDialogBuilder = 
@@ -87,18 +88,6 @@ public class Ping extends BaseClass{
 			}
 		}
 	};
-
-	/**
-	 * Wraps the async task.  Is called onClick of ping button
-	 * @param view
-	 * @throws Exception
-	 */
-	public void pingWrapper(View view) throws Exception{    
-		//calls the background thread
-		ping pinger = new ping();
-		//I have to supply a parameter. I used to have address but it needed to be in the Async
-		pinger.execute(5);     
-	}
 
 	/**
 	 * Seperate thread for network operations
@@ -116,18 +105,21 @@ public class Ping extends BaseClass{
 			//Grab UI edit text
 			EditText urlInEdit = (EditText) findViewById(R.id.ping_url);
 			Editable urlInText = urlInEdit.getText();
-			//Creat address array, needed to get it to work, wont work without an array
-			InetAddress [] ipAddress = null;
+			InetAddress ipAddress = null;
+			String url = "";
 
 			//Try catch block for the getallbyname method
 			try {
-				ipAddress = InetAddress.getAllByName(urlInText.toString());
+				ipAddress = InetAddress.getByName(urlInText.toString());
 				//if it catches an exception then create an alert saying that
 			} catch (UnknownHostException e) {
 				//Return false to signal a time out or bad address
 				badaddr = true;
 				return false;
 			}
+			//Try catch to see if the hostname is an ipaddress or not
+			try{url = ipAddress.getHostName();}
+			catch(Exception e){url = urlInText.toString();}
 
 			/*
 			 * declare an httpfecth object so I can override the onFetch
@@ -143,7 +135,7 @@ public class Ping extends BaseClass{
 			};
 
 			//Call the fetch, which will in turn call the onfetch, giving me the code and duration
-			fetcher.fetch("http://www." + ipAddress[0].getHostName());
+			fetcher.fetch("http://www." + url);
 
 			//if status 200 and duration under 500
 			if(pstatuscode >= 200 && pduration <= 500){
@@ -151,7 +143,6 @@ public class Ping extends BaseClass{
 			}else{
 				return false;
 			}
-
 		}
 
 		//Wrapper for the progress percent. Updates the progress.
@@ -170,7 +161,6 @@ public class Ping extends BaseClass{
 
 		//Outputs the results of the background thread to the UI
 		protected void onPostExecute(Boolean result) {
-
 			if(badaddr){
 				//Alert builder creates and alert
 				AlertDialog.Builder alertDialogBuilder = 
@@ -183,9 +173,7 @@ public class Ping extends BaseClass{
 				//Show the alert
 				ad.show();
 			}
-			
 			badaddr = false;
-			
 			if(result.booleanValue()){
 				//Set output with duration and response. 
 				status.setText("Response OK \nDuration: " + pduration + "\nStatuscode: " + pstatuscode + "\n");

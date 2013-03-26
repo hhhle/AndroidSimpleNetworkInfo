@@ -42,5 +42,4 @@ public class HttpFetch {
 		} catch (IOException ex) {
 		}
 	}
-
 }

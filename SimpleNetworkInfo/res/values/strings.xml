@@ -18,5 +18,8 @@
     <string name="menu_settings">Settings</string>
     <string name="text_networkinfo">NULL</string>
     <string name="status_code"></string>
+    <string name="btn_start">Start</string>
+    <string name="btn_stop">Stop</string>
+    <string name="et_portHint">www.example.com</string>
 
 </resources>
