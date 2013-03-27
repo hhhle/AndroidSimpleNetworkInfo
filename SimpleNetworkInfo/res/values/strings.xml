@@ -21,5 +21,7 @@
     <string name="btn_start">Start</string>
     <string name="btn_stop">Stop</string>
     <string name="et_portHint">www.example.com</string>
+    <string name="et_begin_hint">Begin</string>
+    <string name="et_end_hint">Final</string>
 
 </resources>

@@ -2,14 +2,11 @@ package com.example.simplenetworkinfo.utils;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.os.Environment;
 import android.util.Log;
 import java.io.*;
 import java.net.*;
 import java.util.*;   
 import org.apache.http.conn.util.InetAddressUtils;
-
-import com.example.simplenetworkinfo.R;
 
 @SuppressLint("DefaultLocale")
 public class IpMacUtil extends Activity {

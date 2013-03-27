@@ -22,26 +22,26 @@ public final class R {
     public static final class id {
         public static final int LinearLayout1=0x7f080001;
         public static final int ScrollView1=0x7f080000;
-        public static final int btn_start=0x7f08000f;
-        public static final int btn_stop=0x7f080010;
+        public static final int btn_start=0x7f08000e;
+        public static final int btn_stop=0x7f08000f;
         public static final int button_1=0x7f080014;
         public static final int button_2=0x7f080015;
         public static final int button_3=0x7f080016;
         public static final int button_check_conn=0x7f080002;
         public static final int connection_status=0x7f080004;
         public static final int connection_status_label=0x7f080003;
-        public static final int editText1=0x7f08000d;
+        public static final int et_beginPort=0x7f080010;
+        public static final int et_endPort=0x7f080011;
+        public static final int et_portAddress=0x7f08000c;
         public static final int networkInfo=0x7f080005;
-        public static final int pb_port=0x7f080011;
-        public static final int ping_button=0x7f080008;
-        public static final int ping_label=0x7f080006;
-        public static final int ping_status=0x7f08000a;
-        public static final int ping_status_label=0x7f080009;
-        public static final int ping_url=0x7f080007;
-        public static final int port_btn=0x7f08000e;
-        public static final int scrollView1=0x7f08000b;
+        public static final int ping_button=0x7f080007;
+        public static final int ping_status=0x7f080009;
+        public static final int ping_status_label=0x7f080008;
+        public static final int ping_url=0x7f080006;
+        public static final int port_btn=0x7f08000d;
+        public static final int scrollView1=0x7f08000a;
         public static final int settings=0x7f080017;
-        public static final int status_codes=0x7f08000c;
+        public static final int status_codes=0x7f08000b;
         public static final int sv_port=0x7f080012;
         public static final int tv_portResults=0x7f080013;
     }
@@ -63,6 +63,8 @@ public final class R {
         public static final int btn_stop=0x7f050013;
         public static final int button_send=0x7f050002;
         public static final int connection_status_label=0x7f050004;
+        public static final int et_begin_hint=0x7f050015;
+        public static final int et_end_hint=0x7f050016;
         public static final int et_portHint=0x7f050014;
         public static final int menu_info=0x7f05000c;
         public static final int menu_ping=0x7f05000d;

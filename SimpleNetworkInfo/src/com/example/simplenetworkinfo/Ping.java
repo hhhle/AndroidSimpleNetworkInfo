@@ -108,18 +108,13 @@ public class Ping extends BaseClass{
 			InetAddress ipAddress = null;
 			String url = "";
 
-			//Try catch block for the getallbyname method
-			try {
-				ipAddress = InetAddress.getByName(urlInText.toString());
-				//if it catches an exception then create an alert saying that
-			} catch (UnknownHostException e) {
-				//Return false to signal a time out or bad address
-				badaddr = true;
-				return false;
-			}
+			//Resolve the edit text to an ip address
+			try {ipAddress = InetAddress.getByName(urlInText.toString());} 
+			catch (UnknownHostException e) {badaddr = true;return false;}
+			
 			//Try catch to see if the hostname is an ipaddress or not
 			try{url = ipAddress.getHostName();}
-			catch(Exception e){url = urlInText.toString();}
+			catch(Exception e){url = urlInText.toString(); return false;}			
 
 			/*
 			 * declare an httpfecth object so I can override the onFetch
@@ -135,7 +130,7 @@ public class Ping extends BaseClass{
 			};
 
 			//Call the fetch, which will in turn call the onfetch, giving me the code and duration
-			fetcher.fetch("http://www." + url);
+			fetcher.fetch("http://" + url);
 
 			//if status 200 and duration under 500
 			if(pstatuscode >= 200 && pduration <= 500){

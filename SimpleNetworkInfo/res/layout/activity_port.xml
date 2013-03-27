@@ -5,35 +5,58 @@
     android:orientation="vertical" >
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/et_portAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/et_portHint" />
+        android:hint="@string/et_portHint"
+        android:imeOptions="actionDone"
+        android:inputType="textWebEditText"
+        android:singleLine="true" />
 
     <LinearLayout
         android:id="@+id/port_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <Button
             android:id="@+id/btn_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:layout_weight="1"
             android:text="@string/btn_start" />
 
         <Button
             android:id="@+id/btn_stop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:layout_weight="1"
             android:text="@string/btn_stop" />
-    </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/pb_port"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/et_beginPort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:layout_weight="1"
+            android:hint="@string/et_begin_hint"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/et_endPort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:layout_weight="1"
+            android:hint="@string/et_end_hint"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:singleLine="true" />
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/sv_port"
@@ -43,8 +66,7 @@
         <TextView
             android:id="@+id/tv_portResults"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_height="wrap_content" />
     </ScrollView>
 
 </LinearLayout>
