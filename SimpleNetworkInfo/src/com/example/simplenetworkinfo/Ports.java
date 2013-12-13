@@ -4,10 +4,10 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.test.suitebuilder.annotation.Suppress;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -20,7 +20,6 @@ import android.widget.TextView;
  * @author mstanford
  *
  */
-@SuppressLint("HandlerLeak")
 public class Ports extends BaseClass{
 
 	String targetHost = "google.com";
